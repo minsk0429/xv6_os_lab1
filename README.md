@@ -20,7 +20,7 @@
 
 ### 요구 사항
 - Docker Desktop (Apple Silicon 지원 버전)
-- macOS (M1/M2/M3/M4)
+- macOS (M1/M2/M3/M4/M5)
 
 ### 1. Docker 컨테이너 생성 및 실행
 
