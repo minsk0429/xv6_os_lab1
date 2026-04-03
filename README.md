@@ -34,30 +34,42 @@ docker run -it --platform linux/amd64 --name xv6-lab ubuntu:22.04 /bin/bash
 apt-get update && apt-get install -y git gcc make qemu-system-x86 gdb ovmf vim
 ```
 
-### 3. 소스코드 클론
+### 3. 교수님 리포지토리 클론
 
 ```bash
 git clone https://github.com/moonjupark/xv6edk2.git
-cd xv6edk2/xv6
+cd xv6edk2
 ```
 
-> ⚠️ 이후 실습에서는 이 리포지토리의 소스코드로 교체하여 사용한다.
+### 4. xv6 폴더를 이 리포지토리의 코드로 교체
+
+```bash
+rm -rf xv6
+git clone https://github.com/본인아이디/xv6_os_lab1.git xv6
+```
+
+> `본인아이디` 부분을 실제 GitHub 아이디로 바꿔주세요.
 
 ---
 
 ## ⚙️ 빌드 및 실행 방법
 
-### 빌드
+### 1. 빌드
 
 ```bash
 cd /xv6edk2/xv6
 make
 ```
 
-### 파일시스템 이미지 복사 및 실행
+### 2. 디스크 이미지 생성
 
 ```bash
 cp /xv6edk2/xv6/fs.img /xv6edk2/disk1.img
+```
+
+### 3. QEMU로 실행
+
+```bash
 cd /xv6edk2
 qemu-system-x86_64 -bios /usr/share/ovmf/OVMF.fd \
   -drive if=ide,file=fat:rw:image,index=0,media=disk \
@@ -71,7 +83,7 @@ qemu-system-x86_64 -bios /usr/share/ovmf/OVMF.fd \
 
 `Ctrl + A` 누른 후 `X` 입력
 
-### 테스트 프로그램 실행
+### 4. 테스트 프로그램 실행
 
 xv6 셸(`$` 프롬프트)에서 아래 명령어를 실행한다.
 
